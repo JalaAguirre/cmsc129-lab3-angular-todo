@@ -4,8 +4,29 @@
     <mat-label>Task Name</mat-label>
     <input matInput placeholder="Enter task name">
     </mat-form-field>
+    <mat-form-field>
+    <mat-label>Select Date</mat-label>
+    <input matInput [matDatepicker]="datepicker">
+    <mat-datepicker #datepicker/>
+    <mat-datepicker-toggle [for]="datepicker" matSuffix/>
+    </mat-form-field>
+    <mat-form-field>
+    <mat-label>Select Time</mat-label>
+    <input matInput
+        [matTimepicker]="timepicker">
+    <mat-timepicker #timepicker/>
+    <mat-timepicker-toggle [for]="timepicker" matSuffix/>
+    </mat-form-field>
+    <mat-form-field>
+    <mat-label>Priority</mat-label>
+    <mat-select>
+        <mat-option value="high">High</mat-option>
+        <mat-option value="medium">Medium</mat-option>
+        <mat-option value="low">Low</mat-option>
+    </mat-select>
+    </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-raised-button color="primary" [mat-dialog-close]="true">Save</button>
+    <app-add-button (btnClick)="toggleAddTask()"></app-add-button>
 </mat-dialog-actions>
