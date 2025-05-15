@@ -1,10 +1,10 @@
 export interface Task {
-  id: number;
+  id?: number;
   name: string;
   date: string;
   time: string;
   priority: 'High' | 'Medium' | 'Low';
-  done: boolean;
+  done?: boolean;
 }
 
 interface TaskList {

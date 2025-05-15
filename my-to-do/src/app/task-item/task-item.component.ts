@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from '../Task'; 
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -18,10 +18,13 @@ import {MatButtonModule} from '@angular/material/button';
 })
 export class TaskItemComponent implements OnInit{
   @Input() task!: Task;
+  @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-
+  onDelete(task: Task) {
+    this.onDeleteTask.emit(task);
+  }
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AddTaskButtonComponent } from './add-task-button/add-task-button.component';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { SortTaskButtonComponent } from "./sort-task-button/sort-task-button.component";
 import { TasksComponent } from "./tasks/tasks.component";
 
@@ -15,4 +15,5 @@ import { TasksComponent } from "./tasks/tasks.component";
 })
 export class AppComponent {
   title = 'my-to-do';
+
 }
