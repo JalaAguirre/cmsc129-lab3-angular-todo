@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteTaskToastComponent } from './delete-task-toast.component';
+import { DeleteTaskModalComponent } from './delete-task-modal.component';
 
-describe('DeleteTaskToastComponent', () => {
-  let component: DeleteTaskToastComponent;
-  let fixture: ComponentFixture<DeleteTaskToastComponent>;
+describe('DeleteTaskModalComponent', () => {
+  let component: DeleteTaskModalComponent;
+  let fixture: ComponentFixture<DeleteTaskModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DeleteTaskToastComponent]
+      imports: [DeleteTaskModalComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DeleteTaskToastComponent);
+    fixture = TestBed.createComponent(DeleteTaskModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

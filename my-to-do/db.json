@@ -1,25 +1,17 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "name": "Complete Angular project",
-      "date": "2023-11-15",
-      "time": "14:30",
-      "priority": "High",
-      "done": false
-    },
-    {
-      "id": "2",
-      "name": "Grocery shopping",
-      "date": "2023-11-16",
-      "time": "10:00",
-      "priority": "Medium",
+      "id": 0,
+      "name": "Feed the Cats",
+      "date": "2025-05-21T16:00:00.000Z",
+      "time": "2025-05-15T17:30:00.000Z",
+      "priority": "low",
       "done": false
     },
     {
       "id": 0,
-      "name": "Feed the Cats",
-      "date": "2025-05-21T16:00:00.000Z",
+      "name": "Complete the project",
+      "date": "2025-05-20T16:00:00.000Z",
       "time": "2025-05-15T17:30:00.000Z",
       "priority": "low",
       "done": false
