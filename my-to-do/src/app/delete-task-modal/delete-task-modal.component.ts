@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -10,21 +10,31 @@ import {
 } from '@angular/material/dialog';
 import {FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
+import { Task } from '../Task';
 
 @Component({
+  standalone: true,
   selector: 'app-delete-task-modal',
   imports: [MatDialogTitle,
             MatDialogContent,
             MatDialogActions,
-            MatDialogClose,
             FormsModule,
             MatFormFieldModule,
-            MatInputModule
           ],
   templateUrl: './delete-task-modal.component.html',
   styleUrl: './delete-task-modal.component.css'
 })
 export class DeleteTaskModalComponent {
+  constructor(
+    public dialogRef: MatDialogRef<DeleteTaskModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { task: Task }
+  ) {}
 
+  onCancel(): void {
+    this.dialogRef.close();
+  }
+
+  onConfirm(): void {
+    this.dialogRef.close(true);
+  }
 }

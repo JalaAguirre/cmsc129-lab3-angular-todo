@@ -1,12 +1,9 @@
-<h2 mat-dialog-title>Hi </h2>
+<h2 mat-dialog-title>Delete a Task</h2>
 <mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <mat-form-field>
-    <mat-label>Favorite Animal</mat-label>
-    <input matInput/>
-  </mat-form-field>
+  <p>Are you sure you want to delete the task?</p>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button>No Thanks</button>
-  <button mat-button>Ok</button>
+  <button mat-button (click) = "onCancel()">Cancel</button>
+  <button mat-button>Delete</button>
+  <!-- (click)="onDelete(task)" -->
 </mat-dialog-actions>
