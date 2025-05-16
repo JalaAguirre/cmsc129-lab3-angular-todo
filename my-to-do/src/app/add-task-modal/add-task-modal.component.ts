@@ -13,6 +13,7 @@ import { AddButtonComponent } from '../add-button/add-button.component';
 import { FormsModule } from '@angular/forms';
 
 import { Task } from '../Task';
+import { TaskService } from '../services/task.service';
 
 @Component({
   standalone: true,
@@ -29,7 +30,7 @@ import { Task } from '../Task';
     MatNativeDateModule,
     MatSelectModule,
     AddButtonComponent,
-    FormsModule
+    FormsModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './add-task-modal.component.html',
@@ -44,35 +45,45 @@ export class AddTaskModalComponent implements OnInit{
   name: string = '';
   date: string = '';
   time: string = '';
-  priority: 'High' | 'Medium' | 'Low' = 'Medium'; // Default value
+  priority: 'high' | 'medium' | 'low' = 'medium'; // Default value
   done: boolean = false;
 
 
-  constructor(){}
+  constructor(private taskService: TaskService){}
 
   ngOnInit(): void {}
 
   onSubmit(){
-    console.log('Add');
-    if(!this.name) {
-      alert('Please add a task!');
-      return
-    }
+      console.log('Add');
+      if(!this.name) {
+        alert('Please add a task!');
+        return;
+      }
 
-    const newTask: Task = {
-      id: 0,
-      name: this.name,
-      date: this.date,
-      time: this.time,
-      priority: this.priority,
-      done: false
-    }
+      const newTask: Task = {
+        id: 0, // Let the server generate the ID
+        name: this.name,
+        date: this.date,
+        time: this.time,
+        priority: this.priority,
+        done: false
+      }
 
-    this.onAddTask.emit(newTask);
+    this.taskService.addTask(newTask).subscribe(
+      (task: Task) => {
+        this.onAddTask.emit(task);
+        this.resetForm();
+      },
+      (error: any) => {
+        console.error('Error adding task:', error);
+      }
+    );
+  }
 
+  private resetForm() {
     this.name = '';
     this.date = '';
     this.time = '';
-    this.priority = 'Medium';
+    this.priority = 'medium';
   }
 }

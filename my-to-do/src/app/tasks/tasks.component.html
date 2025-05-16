@@ -1,4 +1,3 @@
 <div class="tasks-container">
-  <app-add-task-modal (onAddTask)="addTask($event)"></app-add-task-modal>
-  <app-task-item *ngFor="let task of tasks" [task]="task" (onDeleteTask)="deleteTask(task)"></app-task-item>
+    <app-task-item *ngFor="let task of tasks" [task]="task" (onDeleteTask)="deleteTask(task)"></app-task-item>
 </div>

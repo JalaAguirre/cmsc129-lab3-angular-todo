@@ -3,7 +3,7 @@ export interface Task {
   name: string;
   date: string;
   time: string;
-  priority: 'High' | 'Medium' | 'Low';
+  priority: 'high' | 'medium' | 'low';
   done?: boolean;
 }
 
