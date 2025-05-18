@@ -40,44 +40,56 @@ import { TaskService } from '../services/task.service';
     }
   `]
 })
-export class AddTaskModalComponent implements OnInit{
+export class AddTaskModalComponent implements OnInit {
   @Output() onAddTask: EventEmitter<Task> = new EventEmitter();
   name: string = '';
   date: string = '';
   time: string = '';
-  priority: 'high' | 'medium' | 'low' = 'medium'; // Default value
+  priority: 'high' | 'medium' | 'low' = 'medium';
   done: boolean = false;
+  private nextId: number = 1;
 
+  constructor(private taskService: TaskService) {}
 
-  constructor(private taskService: TaskService){}
-
-  ngOnInit(): void {}
-
-  onSubmit(){
-      console.log('Add');
-      if(!this.name) {
-        alert('Please add a task!');
-        return;
+  ngOnInit(): void {
+    this.taskService.getTasks().subscribe(tasks => {
+      if (tasks && tasks.length > 0) {
+        const numericIds = tasks
+          .map(t => t.id)
+          .filter(id => id !== undefined && id !== null)
+          .map(id => parseInt(id as string, 10))
+          .filter(id => !isNaN(id));
+        
+        this.nextId = numericIds.length > 0 ? Math.max(...numericIds) + 1 : 1;
       }
+    });
+  }
 
-      const newTask: Task = {
-        id: 0, // Let the server generate the ID
-        name: this.name,
-        date: this.date,
-        time: this.time,
-        priority: this.priority,
-        done: false
-      }
+  onSubmit() {
+    if (!this.name) {
+      alert('Please add a task!');
+      return;
+    }
 
-    this.taskService.addTask(newTask).subscribe(
-      (task: Task) => {
+    const newTask: Task = {
+      id: this.nextId.toString(),
+      name: this.name,
+      date: this.date,
+      time: this.time,
+      priority: this.priority,
+      done: false
+    };
+
+    this.taskService.addTask(newTask).subscribe({
+      next: (task: Task) => {
         this.onAddTask.emit(task);
+        this.nextId++;
         this.resetForm();
       },
-      (error: any) => {
+      error: (error: any) => {
         console.error('Error adding task:', error);
       }
-    );
+    });
   }
 
   private resetForm() {

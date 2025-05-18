@@ -11,6 +11,7 @@ import {
 import {FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { Task } from '../Task';
+import { DeleteButtonComponent } from "../delete-button/delete-button.component";
 
 @Component({
   standalone: true,
@@ -19,8 +20,9 @@ import { Task } from '../Task';
             MatDialogContent,
             MatDialogActions,
             FormsModule,
-            MatFormFieldModule,
-          ],
+            MatFormFieldModule, 
+            DeleteButtonComponent
+  ],
   templateUrl: './delete-task-modal.component.html',
   styleUrl: './delete-task-modal.component.css'
 })

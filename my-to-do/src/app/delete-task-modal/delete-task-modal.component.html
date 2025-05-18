@@ -4,6 +4,5 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click) = "onCancel()">Cancel</button>
-  <button mat-button>Delete</button>
-  <!-- (click)="onDelete(task)" -->
+  <app-delete-button (btnClick)="onConfirm()"></app-delete-button>
 </mat-dialog-actions>

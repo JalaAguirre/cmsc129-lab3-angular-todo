@@ -17,29 +17,33 @@ export class TasksComponent implements OnInit {
 
   constructor(private taskService: TaskService) {}
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.taskService.getTasks().subscribe(tasks => {
+      console.log('Loaded tasks:', tasks); // Check if ID=2 exists
       this.tasks = tasks;
-      console.log('Tasks loaded:', tasks); // Verify in console
     });
   }
 
   deleteTask(task: Task) {
+    console.log('Deleting task with ID:', task.id, 'Type:', typeof task.id);
     this.taskService.deleteTask(task).subscribe({
       next: () => {
         this.tasks = this.tasks.filter(t => t.id !== task.id);
       },
       error: (err) => {
         console.error('Error deleting task:', err);
+        // Option 1: Remove from local state anyway (optimistic update)
+        // this.tasks = this.tasks.filter(t => t.id !== task.id);
+        
+        // Option 2: Show error message
+        alert('Failed to delete task. Please try again.');
       }
     });
   }
 
-  // Fix the syntax error and add proper method
   addTask(task: Task) {
     console.log('Adding task:', task);
-    // Add your task service call here
-    this.taskService.addTask(task).subscribe(newTask => {
+    this.taskService.addTask(task).subscribe((newTask: Task) => {
       this.tasks.push(newTask);
     });
   }
