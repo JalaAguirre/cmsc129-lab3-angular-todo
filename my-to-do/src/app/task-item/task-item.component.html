@@ -16,10 +16,10 @@
     </mat-card-content>
   </div>
   <div>
-    <button mat-icon-button>
+    <button (click) = "openEditDialog()" mat-icon-button>
       <mat-icon>edit</mat-icon>
     </button>
-    <button (click)="openDeleteDialog()" mat-icon-button>
+    <button (click) = "openDeleteDialog()" mat-icon-button>
       <mat-icon>delete</mat-icon>
     </button>
   </div>

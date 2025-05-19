@@ -8,6 +8,7 @@ import { DeleteTaskModalComponent } from '../delete-task-modal/delete-task-modal
 import { MatDialog } from '@angular/material/dialog';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { TaskService } from '../services/task.service';
+import { EditTaskModalComponent } from '../edit-task-modal/edit-task-modal.component';
 
 @Component({
   selector: 'app-task-item',
@@ -62,6 +63,21 @@ export class TaskItemComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.onDeleteTask.emit(this.task);
+      }
+    });
+  }
+
+  openEditDialog(): void {
+    const dialogRef = this.dialog.open(EditTaskModalComponent, {
+      width: '600px',
+      panelClass: 'custom-dialog-container',
+      data: { task: this.task }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.task = result;
+        this.onTaskUpdate.emit(result);
       }
     });
   }
