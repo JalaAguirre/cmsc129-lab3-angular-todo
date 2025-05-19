@@ -48,9 +48,16 @@ export class TaskService {
     };
   }
 
-
   addTask(task: Task): Observable<Task> {
     // Backend will generate ID
     return this.http.post<Task>(this.apiUrl, task, httpOptions);
+  }
+
+  // In task.service.ts
+  updateTask(task: Task): Observable<Task> {
+    const url = `${this.apiUrl}/${task.id}`;
+    return this.http.put<Task>(url, task, httpOptions).pipe(
+      catchError(this.handleError<Task>('updateTask'))
+    );
   }
 }

@@ -47,5 +47,12 @@ export class TasksComponent implements OnInit {
       this.tasks.push(newTask);
     });
   }
+
+  // In tasks.component.ts
+  updateTask(updatedTask: Task) {
+    this.tasks = this.tasks.map(task => 
+      task.id === updatedTask.id ? updatedTask : task
+    );
+  }
 }
 

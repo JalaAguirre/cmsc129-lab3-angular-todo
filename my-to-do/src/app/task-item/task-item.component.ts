@@ -6,29 +6,51 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { DeleteTaskModalComponent } from '../delete-task-modal/delete-task-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatCheckboxChange } from '@angular/material/checkbox';
+import { TaskService } from '../services/task.service';
 
 @Component({
   selector: 'app-task-item',
   standalone: true,
-  imports: [MatCardModule,
-            MatCheckboxModule,
-            MatIconModule,
-            MatButtonModule,
+  imports: [
+    MatCardModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   templateUrl: './task-item.component.html',
   styleUrl: './task-item.component.css'
 })
-export class TaskItemComponent implements OnInit{
+export class TaskItemComponent implements OnInit {
   @Input() task!: Task;
   @Output() onDeleteTask = new EventEmitter<Task>();
+  @Output() onTaskUpdate = new EventEmitter<Task>();
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    private taskService: TaskService
+  ) {}
 
   ngOnInit(): void {}
 
-  // onDelete(task: Task) {
-  //   this.onDeleteTask.emit(task);
-  // }
+  onCheckboxChange(event: MatCheckboxChange) {
+    const updatedTask = {
+      ...this.task,
+      done: event.checked
+    };
+    
+    this.taskService.updateTask(updatedTask).subscribe({
+      next: (task) => {
+        this.task = task;
+        this.onTaskUpdate.emit(task);
+      },
+      error: (err) => {
+        console.error('Error updating task:', err);
+        // Revert checkbox if update fails
+        event.source.checked = !event.checked;
+      }
+    });
+  }
 
   openDeleteDialog(): void {
     const dialogRef = this.dialog.open(DeleteTaskModalComponent, {
@@ -44,4 +66,3 @@ export class TaskItemComponent implements OnInit{
     });
   }
 }
-
