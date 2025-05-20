@@ -10,6 +10,8 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 import { TaskService } from '../services/task.service';
 import { EditTaskModalComponent } from '../edit-task-modal/edit-task-modal.component';
 
+
+
 @Component({
   selector: 'app-task-item',
   standalone: true,
@@ -80,5 +82,24 @@ export class TaskItemComponent implements OnInit {
         this.onTaskUpdate.emit(result);
       }
     });
+  }
+
+  get formattedDateTime(): string {
+    // Combine date and time if both are present
+    if (this.task?.date && this.task?.time) {
+      const date = new Date(this.task.date);
+      const time = new Date(this.task.time);
+      // Set the hours/minutes/seconds from time to date
+      date.setHours(time.getHours(), time.getMinutes(), time.getSeconds());
+      return date.toLocaleString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      });
+    }
+    return '';
   }
 }

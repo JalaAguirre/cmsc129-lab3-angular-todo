@@ -1,0 +1,9 @@
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toast-content button {
+  margin-left: 16px;
+}

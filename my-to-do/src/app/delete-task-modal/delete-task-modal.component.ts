@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -12,6 +12,11 @@ import {FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { Task } from '../Task';
 import { DeleteButtonComponent } from "../delete-button/delete-button.component";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import { DeleteTaskToastComponent } from '../delete-task-toast/delete-task-toast.component';
+import { TaskService } from '../services/task.service';
 
 @Component({
   standalone: true,
@@ -21,15 +26,21 @@ import { DeleteButtonComponent } from "../delete-button/delete-button.component"
             MatDialogActions,
             FormsModule,
             MatFormFieldModule, 
-            DeleteButtonComponent
-  ],
+            DeleteButtonComponent,
+            MatButtonModule,  
+            MatInputModule,
+            DeleteTaskToastComponent,],
   templateUrl: './delete-task-modal.component.html',
   styleUrl: './delete-task-modal.component.css'
 })
 export class DeleteTaskModalComponent {
+  private deletedTask: Task | null = null;
+
   constructor(
     public dialogRef: MatDialogRef<DeleteTaskModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { task: Task }
+    @Inject(MAT_DIALOG_DATA) public data: { task: Task },
+    private snackBar: MatSnackBar,
+    private taskService: TaskService
   ) {}
 
   onCancel(): void {
@@ -37,6 +48,44 @@ export class DeleteTaskModalComponent {
   }
 
   onConfirm(): void {
+    // Store the task before deletion
+    this.deletedTask = {...this.data.task};
     this.dialogRef.close(true);
+    this.showDeleteToast();
+  }
+
+
+  private showDeleteToast(): void {
+    const toastRef = this.snackBar.openFromComponent(DeleteTaskToastComponent, {
+      duration: 5000,
+      panelClass: ['success-toast'],
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      data: {
+        message: 'Task deleted successfully!',
+        undo: () => this.undoDelete()
+      }
+    });
+
+    toastRef.afterDismissed().subscribe(() => {
+      if (this.deletedTask) {
+        // Permanently delete the task if toast was dismissed without undo
+        this.taskService.deleteTask(this.deletedTask).subscribe();
+      }
+    });
+  }
+
+  private undoDelete(): void {
+    if (this.deletedTask) {
+      this.taskService.addTask(this.deletedTask).subscribe({
+        next: (restoredTask) => {
+          console.log('Task restored:', restoredTask);
+          this.deletedTask = null;
+        },
+        error: (err) => {
+          console.error('Error restoring task:', err);
+        }
+      });
+    }
   }
 }

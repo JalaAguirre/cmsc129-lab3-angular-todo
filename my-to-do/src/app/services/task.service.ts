@@ -60,4 +60,10 @@ export class TaskService {
       catchError(this.handleError<Task>('updateTask'))
     );
   }
+  
+  restoreTask(task: Task): Observable<Task> {
+    // Implement your API call or local storage logic here
+    // This is just an example:
+    return this.http.post<Task>(`${this.apiUrl}/tasks`, task);
+  }
 }

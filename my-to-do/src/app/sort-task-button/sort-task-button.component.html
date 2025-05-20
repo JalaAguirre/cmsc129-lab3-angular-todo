@@ -1,4 +1,8 @@
-<mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+<mat-button-toggle-group 
+  name="fontStyle" 
+  aria-label="Font Style"
+  (change)="onSortChange($event)"
+  class="sort-toggle-group">
   <mat-button-toggle value="dateadded">Date Added</mat-button-toggle>
   <mat-button-toggle value="duedate">Due Date</mat-button-toggle>
   <mat-button-toggle value="prio">Priority</mat-button-toggle>

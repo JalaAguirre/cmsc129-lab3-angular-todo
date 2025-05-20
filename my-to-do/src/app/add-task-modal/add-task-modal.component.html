@@ -1,25 +1,25 @@
 <h2 mat-dialog-title>Add New Task</h2>
-<form  (ngSubmit)="onSubmit()">
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
     <mat-dialog-content>
         <mat-form-field appearance="outline">
             <mat-label>Task Name</mat-label>
-            <input type="text" name="name" [(ngModel)]="name" id="name" matInput placeholder="Enter task name">
+            <input type="text" name="name" [(ngModel)]="name" id="name" matInput placeholder="Enter task name" required>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Select Date</mat-label>
-            <input type="text" name="date" [(ngModel)]="date" id="date" matInput [matDatepicker]="datepicker">
+            <input type="text" name="date" [(ngModel)]="date" id="date" matInput [matDatepicker]="datepicker" required>
             <mat-datepicker #datepicker/>
             <mat-datepicker-toggle [for]="datepicker" matSuffix/>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Select Time</mat-label>
-            <input type="text" name="time" [(ngModel)]="time" id="time" matInput [matTimepicker]="timepicker">
+            <input type="text" name="time" [(ngModel)]="time" id="time" matInput [matTimepicker]="timepicker" required>
             <mat-timepicker #timepicker/>
             <mat-timepicker-toggle [for]="timepicker" matSuffix/>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Priority</mat-label>
-            <mat-select type="text" name="priority" [(ngModel)]="priority" id="priority"> 
+            <mat-select type="text" name="priority" [(ngModel)]="priority" id="priority" required>
                 <mat-option value="high">High</mat-option>
                 <mat-option value="medium">Medium</mat-option>
                 <mat-option value="low">Low</mat-option>
@@ -28,6 +28,6 @@
     </mat-dialog-content>
     <mat-dialog-actions align="end">
         <button mat-button mat-dialog-close>Cancel</button>
-        <app-add-button (btnClick)="onSubmit()"></app-add-button>
+        <app-add-button (btnClick)="onSubmit(form)" [disabled]="form.invalid!"></app-add-button>    
     </mat-dialog-actions>
 </form>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 
@@ -12,6 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 export class AddButtonComponent implements OnInit{
 
   @Output() btnClick = new EventEmitter();
+  @Input() disabled: boolean = false;
 
   ngOnInit(): void {}
 

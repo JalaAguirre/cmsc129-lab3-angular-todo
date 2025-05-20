@@ -5,6 +5,7 @@ export interface Task {
   time: string;
   priority: 'high' | 'medium' | 'low';
   done?: boolean;
+  dateAdded?: string;
 }
 
 interface TaskList {

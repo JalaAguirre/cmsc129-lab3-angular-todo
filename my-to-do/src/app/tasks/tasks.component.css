@@ -1,0 +1,10 @@
+.tasks-container {
+  width: 600px;         /* Set your desired width */
+  height: 400px;        /* Set your desired height */
+  overflow-y: auto;     /* Enable vertical scrolling if content overflows */
+  overflow-x: hidden;   /* Hide horizontal scroll if not needed */
+  padding: 16px;        /* Optional: add some padding */
+  box-sizing: border-box;
+  background: #fff;     /* Optional: background color */
+  margin-top: 5px;
+}
