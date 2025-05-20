@@ -10,9 +10,9 @@ import { MatButtonToggleChange } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,
-    AddTaskButtonComponent,
-    MatSelectModule, SortTaskButtonComponent, TasksComponent, SubheaderContainerComponent],
+  imports: [MatSelectModule, 
+            TasksComponent, 
+            SubheaderContainerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

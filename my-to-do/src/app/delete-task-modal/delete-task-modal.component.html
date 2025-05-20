@@ -1,8 +1,9 @@
 <h2 mat-dialog-title>Delete a Task</h2>
 <mat-dialog-content>
   <p>Are you sure you want to delete the task?</p>
+  <p>Task: <strong>{{ data.task.name }}</strong></p>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click) = "onCancel()">Cancel</button>
-  <app-delete-button mat-button color="warn" (click)="onConfirm()"></app-delete-button>
+  <app-delete-button mat-button (click)="onConfirm()"></app-delete-button>
 </mat-dialog-actions>

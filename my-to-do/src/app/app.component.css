@@ -17,6 +17,15 @@
     font-size: 40px;
     font-weight: bold;
     font-family: sans-serif;
-    color: #5b61b2;
+    color: #bb0760;
     /* change font family */
 }
+
+.todo-header-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end; /* Right-align the subheader */
+    margin-bottom: 16px;
+}
+

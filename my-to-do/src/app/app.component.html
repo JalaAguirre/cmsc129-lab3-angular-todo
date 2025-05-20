@@ -1,5 +1,7 @@
 <div class="todo-container">
   <p class="todo-title">to-do</p>
-  <app-subheader-container (sortChange)="onSortChange($event)"></app-subheader-container>
+  <div class="todo-header-row">
+    <app-subheader-container (sortChange)="onSortChange($event)"></app-subheader-container>
+  </div>
   <app-tasks></app-tasks>
 </div>

@@ -1,25 +1,25 @@
 <h2 mat-dialog-title>Edit a Task</h2>
-<form (ngSubmit)="onSubmit()">
+<form #form="ngForm" (ngSubmit)="onSubmit()">
     <mat-dialog-content>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" style="width: 100%;">
             <mat-label>Task Name</mat-label>
-            <input type="text" name="name" [(ngModel)]="name" id="name" matInput placeholder="Enter task name" required>
+            <input type="text" name="name" [(ngModel)]="name" id="name" matInput placeholder="Enter task name">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline" style="width: 100%;">
             <mat-label>Select Date</mat-label>
-            <input matInput [(ngModel)]="date" [matDatepicker]="datepicker" name="date" required>
+            <input type="text" name="date" [(ngModel)]="date" id="date" matInput [matDatepicker]="datepicker">
             <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
             <mat-datepicker #datepicker></mat-datepicker>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline" style="width: 100%;">
             <mat-label>Select Time</mat-label>
-            <input matInput [(ngModel)]="time" [matTimepicker]="timepicker" name="time" required>
+            <input type="text" name="time" [(ngModel)]="time" id="time" matInput [matTimepicker]="timepicker">
             <mat-timepicker-toggle matSuffix [for]="timepicker"></mat-timepicker-toggle>
             <mat-timepicker #timepicker></mat-timepicker>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline" style="width: 100%;">
             <mat-label>Priority</mat-label>
-            <mat-select [(ngModel)]="priority" name="priority" required>
+            <mat-select name="priority" [(ngModel)]="priority" id="priority">
                 <mat-option value="high">High</mat-option>
                 <mat-option value="medium">Medium</mat-option>
                 <mat-option value="low">Low</mat-option>

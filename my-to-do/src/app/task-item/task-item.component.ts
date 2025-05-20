@@ -1,16 +1,18 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Task } from '../Task'; 
-import {MatCardModule} from '@angular/material/card';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import { DeleteTaskModalComponent } from '../delete-task-modal/delete-task-modal.component';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import { TaskService } from '../services/task.service';
+
+import { DeleteTaskModalComponent } from '../delete-task-modal/delete-task-modal.component';
 import { EditTaskModalComponent } from '../edit-task-modal/edit-task-modal.component';
 
 
+import { Task } from '../Task'; 
+import { TaskService } from '../services/task.service';
 
 @Component({
   selector: 'app-task-item',
@@ -20,6 +22,7 @@ import { EditTaskModalComponent } from '../edit-task-modal/edit-task-modal.compo
     MatCheckboxModule,
     MatIconModule,
     MatButtonModule,
+    CommonModule
   ],
   templateUrl: './task-item.component.html',
   styleUrl: './task-item.component.css'

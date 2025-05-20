@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { TaskItemComponent } from '../task-item/task-item.component';
+
 import { TaskService } from '../services/task.service';
 import { Task } from '../Task';
-import { SortTaskButtonComponent } from '../sort-task-button/sort-task-button.component';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
   imports: [CommonModule,
-    TaskItemComponent,
-    SortTaskButtonComponent],
+            TaskItemComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css'
 })

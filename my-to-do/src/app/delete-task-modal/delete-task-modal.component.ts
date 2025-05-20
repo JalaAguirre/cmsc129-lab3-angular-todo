@@ -10,13 +10,15 @@ import {
 } from '@angular/material/dialog';
 import {FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { Task } from '../Task';
-import { DeleteButtonComponent } from "../delete-button/delete-button.component";
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
+
+import { DeleteButtonComponent } from "../delete-button/delete-button.component";
 import { DeleteTaskToastComponent } from '../delete-task-toast/delete-task-toast.component';
+
 import { TaskService } from '../services/task.service';
+import { Task } from '../Task';
 
 @Component({
   standalone: true,
@@ -28,8 +30,7 @@ import { TaskService } from '../services/task.service';
             MatFormFieldModule, 
             DeleteButtonComponent,
             MatButtonModule,  
-            MatInputModule,
-            DeleteTaskToastComponent,],
+            MatInputModule],
   templateUrl: './delete-task-modal.component.html',
   styleUrl: './delete-task-modal.component.css'
 })

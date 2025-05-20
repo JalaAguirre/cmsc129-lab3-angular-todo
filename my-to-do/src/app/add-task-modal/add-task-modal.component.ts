@@ -9,8 +9,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import { AddButtonComponent } from '../add-button/add-button.component';
 import { FormsModule } from '@angular/forms';
+
+import { AddButtonComponent } from '../add-button/add-button.component';
 
 import { Task } from '../Task';
 import { TaskService } from '../services/task.service';

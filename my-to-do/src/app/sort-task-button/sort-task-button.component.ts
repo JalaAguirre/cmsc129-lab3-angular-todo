@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-sort-task-button',
   standalone: true,
   imports: [MatButtonToggleModule,
-    CommonModule],
+            CommonModule],
   templateUrl: './sort-task-button.component.html',
   styleUrl: './sort-task-button.component.css'
 })
