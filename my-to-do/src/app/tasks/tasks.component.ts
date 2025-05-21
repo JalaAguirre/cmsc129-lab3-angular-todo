@@ -97,10 +97,8 @@ export class TasksComponent implements OnInit {
   // Helper method to parse due dates consistently
   private parseDueDate(dateString: string, timeString?: string): number {
     try {
-      // Create date without time first
       const date = new Date(dateString);
       
-      // If time is provided, add it to the date
       if (timeString) {
         const timeParts = timeString.split(':');
         if (timeParts.length >= 2) {

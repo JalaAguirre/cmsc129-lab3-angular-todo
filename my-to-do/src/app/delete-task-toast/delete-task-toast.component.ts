@@ -7,7 +7,7 @@ import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
   selector: 'app-delete-task-toast',
   standalone: true,
   imports: [MatIconModule,
-    MatButtonModule],
+            MatButtonModule],
   templateUrl: './delete-task-toast.component.html',
   styleUrl: './delete-task-toast.component.css'
 })
