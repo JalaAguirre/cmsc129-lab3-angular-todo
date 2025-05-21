@@ -55,13 +55,12 @@ export class DeleteTaskModalComponent {
     this.showDeleteToast();
   }
 
-
   private showDeleteToast(): void {
     const toastRef = this.snackBar.openFromComponent(DeleteTaskToastComponent, {
       duration: 5000,
       panelClass: ['success-toast'],
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
       data: {
         message: 'Task deleted successfully!',
         undo: () => this.undoDelete()
