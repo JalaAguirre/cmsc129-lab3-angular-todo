@@ -25,7 +25,7 @@ export class TaskService {
   }
 
   deleteTask(task: Task): Observable<Task> {
-    const url = `${this.apiUrl}/${task.id}`; // No conversion needed now
+    const url = `${this.apiUrl}/${task.id}`;
     console.log('DELETE Request URL:', url);
     
     return this.http.delete<Task>(url).pipe(
@@ -33,14 +33,12 @@ export class TaskService {
         console.error('Full error response:', error);
         if (error.status === 404) {
           console.error('Task not found or invalid endpoint');
-          // You might want to remove the task from local state anyway
         }
         return throwError(() => error);
       })
     );
   }
 
-  // Add this error handling method if not already present
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(`${operation} failed: ${error.message}`);
@@ -49,11 +47,9 @@ export class TaskService {
   }
 
   addTask(task: Task): Observable<Task> {
-    // Backend will generate ID
     return this.http.post<Task>(this.apiUrl, task, httpOptions);
   }
 
-  // In task.service.ts
   updateTask(task: Task): Observable<Task> {
     const url = `${this.apiUrl}/${task.id}`;
     return this.http.put<Task>(url, task, httpOptions).pipe(
@@ -62,8 +58,6 @@ export class TaskService {
   }
   
   restoreTask(task: Task): Observable<Task> {
-    // Implement your API call or local storage logic here
-    // This is just an example:
     return this.http.post<Task>(`${this.apiUrl}/tasks`, task);
   }
 }

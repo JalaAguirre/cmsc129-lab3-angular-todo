@@ -68,7 +68,6 @@ export class AddTaskModalComponent implements OnInit {
 
   onSubmit(form: any) {
     if (form.invalid) {
-      // Optionally show a message
       alert('Please complete all fields!');
       return;
     }
@@ -79,7 +78,8 @@ export class AddTaskModalComponent implements OnInit {
       date: this.date,
       time: this.time,
       priority: this.priority,
-      done: false
+      done: false,
+      dateAdded: new Date().toISOString()
     };
 
     this.taskService.addTask(newTask).subscribe({
@@ -87,7 +87,7 @@ export class AddTaskModalComponent implements OnInit {
         this.onAddTask.emit(task);
         this.nextId++;
         this.resetForm();
-        form.resetForm(); // Reset the form state
+        form.resetForm();
       },
       error: (error: any) => {
         console.error('Error adding task:', error);
